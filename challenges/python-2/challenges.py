@@ -1,15 +1,14 @@
 import json
 from deepdiff import DeepDiff
 from mergedeep import merge
-from pydash import py_
-from toolz.dicttoolz import assoc_in
+from toolz.dicttoolz import assoc_in, get_in
 
 
 ## Challenge #1: Retrieve a piece of information
 # Write a function named `getBookProperty` that receives and ISBN and a field name
 # and returns the value of the field for the book with the given ISBN
 def get_book_property(library_data: object, isbn: str, field_name: str) -> object:
-	return py_.get(library_data, ['catalog', 'booksByIsbn', isbn, field_name])
+	return get_in(['catalog', 'booksByIsbn', isbn, field_name], library_data)
 
 
 ## Challenge #2: Search information
@@ -19,7 +18,7 @@ def get_book_property(library_data: object, isbn: str, field_name: str) -> objec
 # Remark: You are not allowed to extract author names from author ids. Assume that author ids are opaque strings.
 def book_info(library_data: object, query: str) -> str:
 	def author_names(author_ids: list):
-		return [py_.get(library_data, ['catalog', 'authorsById', author_id, 'name']) for author_id in author_ids]
+		return [get_in(['catalog', 'authorsById', author_id, 'name'], library_data) for author_id in author_ids]
 	def return_values(book: object):
 		return {
 			'title': book['title'],
