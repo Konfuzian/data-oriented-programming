@@ -1,27 +1,35 @@
 
-here are libraries we can use and what they do:
-- pyrsistent: immutable/persistent data structures
-- pyrthon: syntactic sugar for pyrsistent
+libraries already integrated:
 - pydash: lodash equivalent, utility functions, maybe not necessary with pyrsistent (problem is that it has a lot of stateful methods)
-- toolz: similar to pydash, more utility functions (stateless stuff), but maybe also not necessary with pyrsistent
-- fnc: alternative to pydash, optimized for memory efficiency and large datasets, works with generators. other alternatives might be funcy or fn.py
+- toolz: similar to pydash, more utility functions (stateless stuff, but maybe also not necessary with pyrsistent)
 - mergedeep: deep merging of objects
 - deepdiff: deep diffing of objects
-- jschon: json schema validation
+- jschon: json schema validation (replaced by jsonschema)
+- jsonschema: better json schema validation
+
+libraries TODO:
+- pyrsistent: immutable/persistent data structures
+- pyrthon: syntactic sugar for pyrsistent
+- fnc: alternative to pydash, optimized for memory efficiency and large datasets, works with generators. other alternatives might be funcy or fn.py
 - atomos: atomic types
 - multimethods: polymorphism without classes
-- we still need a database
+- a database
 
 
+done:
+- use jsonschema instead of jschon
+- remove classes for stateless stuff, just use functions
 
 next steps:
-- integrate the schema validation with the code (chapter 7, 12)
+- integrate schema validation for external data with the code (chapter 7, 12)
 - figure out atomic operations, and if we need them (chapter 8)
 - move everything to immutable and persistent data structures (chapter 9)
 - maybe: add helper methods to work with these data structures
 - add a database and get data from there (chapter 10)
-- integrate the app with a framework like django or make it usable somehow (chapter 11)
+- integrate the app with a framework like django/flask or make it usable somehow (chapter 11)
 - implement the rest of the functionality
 - optional: add multimethods
+- optional: integrate internal schema validation with the code
 - optional: look at advanced data manipulation (chapter 14) and see if there's anything useful there
 - optional: look at debugging (chapter 15) and play around with the tests
+- optional: add a frontend (try a monorepo)

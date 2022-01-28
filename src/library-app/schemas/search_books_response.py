@@ -46,4 +46,4 @@ valid = [
 invalid = {}
 
 validate(schema, valid)
-validate(schema, invalid)
+#validate(schema, invalid)

@@ -1,11 +1,12 @@
 import json
+from functools import partial
 from unittest import TestCase, main
 
-from catalog import Catalog
-from library import Library
-from system import System
-from system_state import SystemState
-from user_management import UserManagement
+import library as Library
+import catalog as Catalog
+import user_management as UserManagement
+from system import System, SystemState, SystemConsistency, SystemValidity
+
 
 class CatalogTestCase(TestCase):
 	
@@ -165,9 +166,7 @@ class UserManagementTestCase(TestCase):
 			}
 		}
 
-		with self.assertRaises(Exception):
-			UserManagement.add_member(state_before, member)
-		# or: self.assertRaises(Exception, lambda _: UserManagement.add_member(state_before, member))
+		self.assertRaises(Exception, lambda _: UserManagement.add_member(state_before, member))
 
 
 class LibraryTestCase(TestCase):
@@ -203,8 +202,10 @@ class LibraryTestCase(TestCase):
 			"authorNames": ["Alan Moore", "Dave Gibbons"]
 		}
 
-		self.assertEqual(json.loads(Library.search_books_by_title_json(library_data, "Watchmen")), [book_info])
-		self.assertEqual(json.loads(Library.search_books_by_title_json(library_data, "Batman")), [])
+		search = partial(Library.search_books_by_title_json, library_data)
+
+		self.assertEqual(json.loads(search("Watchmen")), [book_info])
+		self.assertEqual(json.loads(search("Batman")), [])
 
 	def test_add_member(self):
 		jessie = {
@@ -297,6 +298,10 @@ class SystemStateTestCase(TestCase):
 
 
 class SystemConsistencyTestCase(TestCase):
+	pass
+
+
+class SystemValidityTestCase(TestCase):
 	pass
 
 
