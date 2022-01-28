@@ -20,6 +20,15 @@ def block_member(user_management_data, member_id):
 def unblock_member(user_management_data, member_id):
 	pass
 
+def can_get_book_lendings(user_management_data, email):
+	return is_librarian(library_data['userManagement'], email) \
+		or is_super_member(library_data['userManagement'], email)
+
+def can_add_book_item(user_management_data, email):
+	return is_librarian(library_data['userManagement'], email) \
+		or is_vip_member(library_data['userManagement'], email)
+
+
 def is_librarian(user_management_data, email):
 	return email in user_management_data['librariansByEmail']
 

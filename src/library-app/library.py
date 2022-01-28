@@ -9,20 +9,12 @@ def search_books_by_title_json(library_data, query):
 	return json.dumps(Catalog.search_books_by_title(library_data['catalog'], query))
 
 def get_book_lendings(library_data, user_id, member_id):
-	def is_allowed():
-		return UserManagement.is_librarian(library_data['userManagement'], user_id) \
-			or UserManagement.is_super_member(library_data['userManagement'], user_id)
-
-	if not is_allowed():
+	if not UserManagement.can_get_book_lendings(library_data['userManagement'], user_id):
 		raise Exception('Not allowed to get book lendings')
 	return Catalog.get_book_lendings(library_data['catalog'], member_id)
 
-def add_book_item(library_data, book_item_info):
-	def is_allowed():
-		return UserManagement.is_librarian(library_data['userManagement'], user_id) \
-			or UserManagement.is_super_member(library_data['userManagement'], user_id)
-
-	if not is_allowed():
+def add_book_item(library_data, user_id, book_item_info):
+	if not UserManagement.can_add_book_item(library_data['userManagement'], user_id):
 		raise Exception('Not allowed to add a book item')
 	return Catalog.add_book_item(library_data['catalog'], book_item_info)
 
