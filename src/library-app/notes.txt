@@ -19,10 +19,11 @@ libraries TODO:
 done:
 - use jsonschema instead of jschon
 - remove classes for stateless stuff, just use functions
-
-next steps:
 - move tests from unittest to pytest
 - use pyrthon with the unit tests
+
+next steps:
+- make sure that catalog and other modules use persistent data structures internally (not just the tests)
 - integrate schema validation for external data with the code (chapter 7, 12)
 - figure out atomic operations, and if we need them (chapter 8)
 - move everything to immutable and persistent data structures (chapter 9)

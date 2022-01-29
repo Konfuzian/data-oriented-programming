@@ -2,10 +2,11 @@ import pytest
 
 from system import System, SystemState
 
+
 def test_using_persistent_data_structures():
 	"""
 	You have to use run_tests.sh (e.g. in Git Bash) to run the tests,
-	otherwise you won't be using persistent data structures.
+	otherwise you won't be using persistent data structures and this test will fail.
 	"""
 	x = {}
 	with pytest.raises(TypeError):
